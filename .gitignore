@@ -1,0 +1,44 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Large Datasets & Archives
+*.zip
+*.7z
+*.rar
+*.tar
+*.tar.gz
+vfn_1_0*/
+
+# Model weights & Large binaries (>50MB)
+*.pth
+*.pt
+*.onnx
+*.bin
+*.h5
+*.tflite
+*.safetensors
+weights/
+checkpoints/
+
+# Virtual Environments
+venv/
+.venv/
+env/
+ENV/
+
+# IDE & OS files
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Offline saved webpages
+*Free Photo_files/
+*Free Photo.html
+
+# Temporary Microsoft Office files
+~$*

@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1116">
+  <meta name="description" content="Upload a meal photo to get a nutrition estimate with CaloLens.">
+  <title>Dashboard | CaloLens</title>
+  <link rel="stylesheet" href="dashboard.css">
+  <script src="dashboard.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="dashboard.html" aria-label="CaloLens dashboard">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 20.2c-4.3-2.5-6.5-5.8-6.5-9.1A3.7 3.7 0 0 1 12 9a3.7 3.7 0 0 1 6.5 2.1c0 3.3-2.2 6.6-6.5 9.1Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M12 9c-.1-3 1.3-4.8 4.3-5.5-.1 2.8-1.5 4.6-4.3 5.5ZM12 9c-.7-2.3-2.2-3.5-4.6-3.8C7.7 7.7 9.2 9 12 9Z" fill="currentColor"/></svg>
+        </span>
+        <span>Calo<span class="brand-accent">Lens</span></span>
+      </a>
+
+      <nav class="main-nav" aria-label="Main navigation">
+        <a class="nav-link active" href="dashboard.html" aria-current="page">Dashboard</a>
+      </nav>
+
+      <a class="account-link" href="login.html" aria-label="Sign out">
+        <span class="avatar" aria-hidden="true">U</span>
+        <span class="account-name">My account</span>
+        <svg class="logout-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M10 17l5-5-5-5M15 12H3m9-8h6a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </header>
+
+    <main>
+      <section class="welcome-row" aria-labelledby="welcome-title">
+        <div>
+          <p class="eyebrow"><span class="status-dot"></span> YOUR PERSONAL FOOD LENS</p>
+          <h1 id="welcome-title">A little more insight<br class="desktop-break"> into every meal.</h1>
+          <p class="welcome-copy">Add a photo of your meal and get a simple estimate of what’s on your plate.</p>
+        </div>
+        <div class="date-chip"><span class="sun-icon" aria-hidden="true">☼</span> Make today a nourishing one</div>
+      </section>
+
+      <section class="workspace" aria-label="Start a meal analysis">
+        <div class="upload-panel">
+          <div class="panel-heading">
+            <div class="heading-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M12 16V4m0 0L7.5 8.5M12 4l4.5 4.5M5 14v4.5A1.5 1.5 0 0 0 6.5 20h11a1.5 1.5 0 0 0 1.5-1.5V14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div>
+              <h2>Let’s look at your meal</h2>
+              <p>Choose a photo to get started</p>
+            </div>
+          </div>
+
+          <div class="dropzone" id="dropzone" tabindex="0" role="button" aria-label="Choose a meal photo to upload">
+            <input id="meal-image" class="file-input" type="file" accept="image/jpeg,image/png,image/webp" aria-label="Choose meal photo">
+            <div class="upload-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M4 16.5V18a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-1.5M12 16V4m0 0L7.5 8.5M12 4l4.5 4.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="dropzone-copy" id="dropzone-copy">
+              <p class="drop-title">Drop your meal photo here</p>
+              <p class="drop-subtitle">or <span>browse files</span> from your device</p>
+              <p class="file-hint">JPG, PNG or WEBP · up to 10 MB</p>
+            </div>
+            <img class="image-preview" id="image-preview" alt="Selected meal preview" hidden>
+            <button class="remove-image" id="remove-image" type="button" aria-label="Remove selected photo" hidden>×</button>
+          </div>
+
+          <div class="upload-actions">
+            <label class="camera-button" for="camera-image">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 8.5A1.5 1.5 0 0 1 5.5 7h2l1.2-2h6.6l1.2 2h2A1.5 1.5 0 0 1 20 8.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 17.5v-9Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="12" cy="12.5" r="3.2" stroke="currentColor" stroke-width="1.6"/></svg>
+              Take a photo
+              <input id="camera-image" class="file-input" type="file" accept="image/*" capture="environment" aria-label="Take a meal photo">
+            </label>
+            <button class="analyze-button" id="analyze-button" type="button" disabled>
+              Analyze my meal
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+          <p class="upload-message" id="upload-message" role="status" aria-live="polite"></p>
+        </div>
+
+        <aside class="side-panel">
+          <div class="plate-art" aria-hidden="true">
+            <span class="art-sparkle sparkle-a">✳</span><span class="art-sparkle sparkle-b">✳</span>
+            <div class="plate-ring"><div class="plate-inner"><i class="food rice"></i><i class="food greens"></i><i class="food protein"></i><i class="food tomato"></i><i class="food carrot"></i></div></div>
+            <span class="scan-corner corner-tl"></span><span class="scan-corner corner-br"></span>
+          </div>
+          <div class="side-copy">
+            <p class="side-label">A clearer picture of your plate</p>
+            <h2>Small steps.<br><span>Better food choices.</span></h2>
+            <p>Our meal scan helps identify dishes and estimate their nutrition, one photo at a time.</p>
+          </div>
+          <div class="privacy-note"><span aria-hidden="true">✦</span> Your meal photo stays yours</div>
+        </aside>
+      </section>
+
+      <section class="how-it-works" aria-labelledby="steps-title">
+        <div class="steps-heading">
+          <div><p class="eyebrow">QUICK & SIMPLE</p><h2 id="steps-title">How it works</h2></div>
+          <p>Three easy steps to understand your meal.</p>
+        </div>
+        <div class="steps-grid">
+          <article class="step-card"><span class="step-number">01</span><span class="step-icon" aria-hidden="true">↥</span><div><h3>Add a photo</h3><p>Upload a meal photo or take one right now.</p></div></article>
+          <article class="step-card"><span class="step-number">02</span><span class="step-icon scan-step" aria-hidden="true">⌕</span><div><h3>Review your meal</h3><p>Check the foods we find on your plate.</p></div></article>
+          <article class="step-card"><span class="step-number">03</span><span class="step-icon chart-step" aria-hidden="true">▥</span><div><h3>See the nutrition</h3><p>Explore an estimate of calories and macros.</p></div></article>
+        </div>
+      </section>
+    </main>
+    <footer class="footer"><span>© 2026 CaloLens</span><span>Made for mindful meals <span class="footer-heart">♥</span></span></footer>
+  </div>
+</body>
+</html>
